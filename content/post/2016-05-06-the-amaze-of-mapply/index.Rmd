@@ -1,0 +1,18 @@
+---
+title: The amaze of mapply()
+author: Yukai Zou
+date: '2016-05-06'
+slug: the-amaze-of-mapply
+categories:
+  - R
+tags:
+  - base
+---
+
+Just learnt today that `mapply(function(x, y), x, y)` will pass element-by-element in BOTH x AND y variable.
+
+```{r}
+mapply(function(x, y) x + y, x = c(1:3), y = c(10, 20, 30))
+```
+
+That's just amazing and got me realized the power of [vectorization in R](https://docs.ycrc.yale.edu/r-novice-gapminder/09-vectorization/). 

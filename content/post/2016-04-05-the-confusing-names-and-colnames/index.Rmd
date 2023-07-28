@@ -1,0 +1,36 @@
+---
+title: The confusing names() and colnames()
+author: Yukai Zou
+date: '2016-04-05'
+slug: the-confusing-names-and-colnames
+categories:
+  - R
+tags:
+  - base
+---
+
+`colnames()` returns the column names for both `matrix` and `data.frame` datatypes;
+
+To illustrake, taking the `iris` dataset as example:
+
+```{r}
+# To show that iris is a data.frame
+class(iris)
+colnames(iris)
+names(iris)
+```
+
+`names()` only works for `data.frame` to return the column names; applying `names()` on `matrix` type would return `NULL`.
+
+```{r}
+# Convert the first four columns of iris into matrix
+m1 <- as.matrix(iris[,1:4])
+head(m1)
+
+colnames(m1)
+names(m1)
+```
+
+Just some observations that worth keeping in mind.
+
+**See also:** [Get rid of row names](/2016/03/31/get-rid-of-row-names/index.html)

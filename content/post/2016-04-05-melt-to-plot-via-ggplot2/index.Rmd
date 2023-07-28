@@ -1,0 +1,48 @@
+---
+title: melt() to plot via ggplot2
+author: Yukai Zou
+date: '2016-04-05'
+slug: melt-to-plot-via-ggplot2
+categories:
+  - R
+tags:
+  - ggplot2
+  - reshape2
+  - dplyr
+---
+
+```{r setup, include=FALSE}
+library(ggplot2); library(reshape2); library(dplyr)
+```
+
+
+# A good table can be visualised quickly
+
+The more I work on data visualization using R, the more I realized that a _good_ table has a clean structure and requires much less effort to be plotted out.
+
+In `ggplot`, this often means that if a table requires more than a `melt()` in `{reshape2}` package then the table is not good enough - needs some more cleaning.
+
+Working example:
+
+```{r}
+d1 <- iris
+d1 %>% head()
+```
+
+```{r}
+d1_melted <- d1 %>% melt(id.vars = c("Species"))
+d1_melted %>% head()
+```
+
+The `facet_wrap()` function can create subplots according to defined attributes. Here, I'd like to:
+
+ - display different `Species` vertically, and 
+ - along each row to plot out length and with of sepal and petal. Now that these data are stored in `variable` and `value` from the `melt()`, they can be specified in ggplot expression.
+
+```{r}
+d1_melted %>% ggplot(aes(x=value)) + geom_histogram() +
+        facet_wrap(Species ~ variable) +
+        theme_bw()
+```
+
+**Take home message:** Be goal-oriented and thinking backward. Better-engineered data allows visualization and decision-makingm more efficiently.

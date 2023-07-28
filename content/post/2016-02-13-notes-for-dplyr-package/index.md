@@ -1,0 +1,58 @@
+---
+title: Notes for {dplyr} package
+author: Yukai Zou
+date: '2016-02-13'
+slug: notes-for-dplyr-package
+categories:
+  - R
+tags:
+  - dplyr
+---
+
+
+
+# 1. select()
+
+# 2. filter()
+
+# 3. arrange()
+
+# 4. rename()
+
+# 5. mutate()
+
+- Tip: specify the `labels` attribute can name the new variables.
+
+Working example:
+
+
+
+# 6. group_by()
+
+<a name="summarize"></a>
+# 7. summarize()
+
+Working example:
+
+
+```r
+mtcars %>% group_by(cyl) %>% summarize(mean(mpg), sd(mpg))
+```
+
+```
+## # A tibble: 3 × 3
+##     cyl `mean(mpg)` `sd(mpg)`
+##   <dbl>       <dbl>     <dbl>
+## 1     4        26.7      4.51
+## 2     6        19.7      1.45
+## 3     8        15.1      2.56
+```
+
+**See also:** [Transforming data frame](/2016/02/10/transforming-data-frame/index.html#aggregate)
+
+<a name="dplyr-left-join"></a>
+# 8. left_join()
+
+When querying/merging tables, can preserve rows that do not contain the key word. However, consistency of variable names must be checked when carrying out the joining.
+
+**See also:** [Left outer join](/2016/02/28/left-outer-join/)

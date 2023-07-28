@@ -1,0 +1,16 @@
+---
+title: Text centering for title in ggplot2
+author: Yukai Zou
+date: '2017-08-02'
+slug: text-centering-for-title-in-ggplot2
+categories:
+  - R
+tags:
+  - R
+---
+
+`ggtitle()` in default sets text as left-aligned. To center the text, add:
+
+- `theme(plot.title = element_text(hjust=0.5))`
+
+to the ggplot2 expression.

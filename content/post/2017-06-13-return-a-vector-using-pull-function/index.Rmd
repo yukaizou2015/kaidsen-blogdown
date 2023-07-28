@@ -1,0 +1,31 @@
+---
+title: Return a vector using pull function
+author: Yukai Zou
+date: '2017-06-13'
+slug: return-a-vector-using-pull-function
+categories:
+  - R
+tags:
+  - dplyr
+---
+
+```{r setup, include=F}
+library(dplyr)
+```
+
+Recently, `dplyr` package added a `pull()` function which behaves similar to `select()`, but can return a vector without further processing.
+
+Working example:
+
+```{r}
+# Loading mtcar dataset
+head(mtcars)
+
+# Get the values from column 'mpg' as a vector using select
+mtcars %>% select(mpg)
+
+# Pull the values from column 'mpg' as a vector
+mtcars %>% pull(mpg)
+```
+
+

@@ -1,0 +1,24 @@
+---
+title: Connect points together in base plot
+author: Yukai Zou
+date: '2017-05-15'
+slug: connect-points-together-in-base-plot
+categories:
+  - R
+tags:
+  - plot
+---
+
+Setting `type` attribute in `plot()` would allow connecting points together.
+
+Working example:
+
+
+```r
+x<-1:10; y=x*x
+plot(x, y, type="o")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
+For more examples setting `type` attribute, see [this post](http://www.sthda.com/english/wiki/generic-plot-types-in-r-software).

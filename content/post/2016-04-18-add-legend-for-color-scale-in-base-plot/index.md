@@ -1,0 +1,17 @@
+---
+title: Add legend for color scale in base plot
+author: Yukai Zou
+date: '2016-04-18'
+slug: add-legend-for-color-scale-in-base-plot
+categories:
+  - R
+tags:
+  - plot
+  - fields
+---
+
+The `image.plot()` function in `{fields}` package can draw a legend of customized color legend, which is helpful to annotate figures later for presentation. To do so:
+
+ - `image.plot(col=heat.color(n), legend.only=T)`
+
+**See also:** [R Documentation](https://search.r-project.org/CRAN/refmans/fields/html/image.plot.html)

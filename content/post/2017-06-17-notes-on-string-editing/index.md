@@ -1,0 +1,106 @@
+---
+title: Notes on string editing
+author: Yukai Zou
+date: '2017-06-17'
+slug: notes-on-string-editing
+categories:
+  - R
+tags:
+  - string
+---
+
+# nchar(): get rid of the last few digits
+
+Sometimes one may wish to extract substrings in a character vector from the end rather than the beginning, and a workaround is to use the `nchar()` function.
+
+Working example:
+
+
+```r
+text <- "12345678"
+text
+```
+
+```
+## [1] "12345678"
+```
+
+```r
+nchar(text)
+```
+
+```
+## [1] 8
+```
+
+To keep the last four characters:
+
+
+```r
+substr(text, nchar(text) - 3, nchar(text))
+```
+
+```
+## [1] "5678"
+```
+
+<a name="add-boundary"></a>
+# Adding boundaries - "\b", "^", "$"
+
+These operators help identify the exact matched pattern, which is helpful when used in combination of `grep()` and `gsub()` functions. 
+
+For instance:
+
+
+```r
+string1 <- c("java", "javascript")
+
+grep("java", string1)
+```
+
+```
+## [1] 1 2
+```
+
+As you can see, without specifying boundary, the output indicates that both `java` and `javascript` are returned. We'll fix that by using `\b`.
+
+
+```r
+grep("\\bjava\\b", string1)
+```
+
+```
+## [1] 1
+```
+
+So now we only get `java` returned as the output. Also, note that an extra `\` is needed in the expression.
+
+But there's one thing that `\b` does not recognize: _space_. See this example:
+
+
+```r
+string = c("yourtext", "yourtexts", "yourtext ", " yourtext ")
+
+grep("\\byourtext\\b", string)
+```
+
+```
+## [1] 1 3 4
+```
+
+The output tells us that `\\byourtext\\b` has found not only the 1st entry ("`yourtext`"), but also the 3rd ("`yourtext `") and 4th (<code> yourtext </code>") entries as well - didn't work as expected. 
+
+To fix that problem, `^` and `$` can be used instead. They acted like a _forced_ boundary for the start (`^`) and end (`$`) point.
+
+
+```r
+string = c("yourtext", "yourtexts", "yourtext ", " yourtext ")
+
+grep("^yourtext$", string)
+```
+
+```
+## [1] 1
+```
+
+**See also:** [Extract characters from string](/2016/02/20/extract-characters-from-string/), [This post](https://stackoverflow.com/questions/26813667/how-to-use-grep-gsub-to-find-exact-match) on Stack Overflow.

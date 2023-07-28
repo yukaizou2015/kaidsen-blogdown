@@ -1,0 +1,37 @@
+---
+title: Assign titles in plotting using mapply()
+author: Yukai Zou
+date: '2016-04-04'
+slug: assign-titles-in-plotting-using-mapply
+categories:
+  - R
+tags:
+  - base
+  - plot
+---
+
+I often encounter the need of creating figures with subplots, where manually assign titles can become a time-consuming task. In R base plotting, I can quickly assign titles (plus other asthestics) by using the `mapply()` function:
+
+- `mapply(function, target, parameters)`
+
+Here I use the `iris` dataset as an example:
+
+```{r, echo=FALSE}
+head(iris)
+```
+
+I'd like to plot out histograms to look at the distributions, and at this stage, I don't care much about the last column (`Species`).
+
+```{r}
+# Initialize the plot with 2 rows and 2 columns for subplotting
+par(mfrow=c(2,2))
+
+# Plot out histograms for the first 4 columns of iris
+mapply(hist, iris[,1:4], 
+       # Get the column names and assign as x label
+       xlab=colnames(iris[,1:4]), 
+       # Assign "Histogram of ..." as title name (main)
+       main=paste0("Histogram of ", colnames(iris[,1:4])))
+```
+
+One `mapply()`, save me tons.

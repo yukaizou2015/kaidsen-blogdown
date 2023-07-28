@@ -1,0 +1,41 @@
+---
+title: About gather() in tidyr
+author: Yukai Zou
+date: '2016-10-14'
+slug: about-gather-in-tidyr
+categories:
+  - R
+tags:
+  - tidyr
+---
+
+```{r setup, include=F}
+library(tidyr); library(dplyr)
+```
+
+**Update**: `gather()` is no longer maintained and it is recommended that `pivot_longer()` is used. For details, see [here](https://tidyr.tidyverse.org/reference/gather.html).
+
+The `gather()` function is somewhat complementary to what the `spread()` function does.
+
+- `gather(data, key, value, -variable)`
+
+where `-` stands for "exclude", meaning that `variable` is excluded in this case.
+
+Working example:
+
+```{r}
+stocks <- tibble(
+  time = as.Date('2009-01-01') + 0:9,
+  X = rnorm(10, 0, 1),
+  Y = rnorm(10, 0, 2),
+  Z = rnorm(10, 0, 4)
+)
+
+stocks
+```
+
+In this table, to put the variables (X, Y, and Z) into a new variable "stock", and al the values to a new variable "price", it can be achieved via below:
+
+```{r}
+gather(stocks, key = "stock", value = "price", -time)
+```

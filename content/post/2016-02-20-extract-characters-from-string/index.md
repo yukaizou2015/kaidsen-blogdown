@@ -1,0 +1,56 @@
+---
+title: Extract characters from string
+author: Yukai Zou
+date: '2016-02-20'
+slug: extract-characters-from-string
+categories:
+  - R
+tags:
+  - base
+---
+
+Extract characters (substrings) from a string is very common in data cleaning. One may wish to store first names and surnames in separate columns, however, in the raw data both are stored in a single column. This is where extracting substrings come in to play. 
+
+There are various ways to extract characters and this post briefly describes two functions: `substr()` and `substring()`.
+
+# substr()
+
+Here's how to use `substr()`:
+
+- `substr(x, start, stop)`
+
+where `x` is a character vector, `start` and `stop` take integer values as inputs to indicate the beginning and ending point.
+
+Working example:
+
+
+```r
+substr("Yukai Zou", 1, 5)
+```
+
+```
+## [1] "Yukai"
+```
+
+# substring()
+
+This function is very similar to `substr()` but can do slightly more. Here's how to use `substring()`:
+
+- `substring(x, first, last)`
+
+note that the 2nd and 3rd attributes are named `first` and `last`, to distinguish from `substr()`. What's different here is that _integer vector_ can be taken as input, and `substring()` will try to figure out the rest to slice the string for you. 
+
+To illustrate that, let's take a closer look at the same example:
+
+
+```r
+substring("Yukai Zou", 1:5, 1:5)
+```
+
+```
+## [1] "Y" "u" "k" "a" "i"
+```
+
+Here, a vector "1,2,3,4,5" (`1:5`) was passed to both the `first` and `last` attributes, and `substring()` took each of the elements one by one, meaning that it started and ended at the 1st element (`"Y"`), then the 2nd (`"u"`), then the 3rd (`"k"`) ... As a result, the output is a character vector that breaks the first name into single characters.
+
+**See also:** [The use of grepl()](/2016/04/25/the-use-of-grepl/), [Notes on string editing](/2017/06/17/notes-on-string-editing/)

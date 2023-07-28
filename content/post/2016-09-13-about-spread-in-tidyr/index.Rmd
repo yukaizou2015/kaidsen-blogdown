@@ -1,0 +1,34 @@
+---
+title: About spread() in tidyr
+author: Yukai Zou
+date: '2016-09-13'
+slug: about-spread-in-tidyr
+categories:
+  - R
+tags:
+  - tidyr
+---
+
+```{r setup, include=F}
+library(dplyr); library(tidyr)
+```
+**Update**: now we have `pivot_wider()` which works effectively the same. Check it out [here](https://tidyr.tidyverse.org/reference/pivot_wider.html).
+
+`spread()` can reshape dataset containing measures of multiple time points and help query data availability per subject, which can truly be a time saver when there are many subjects with lots of data. 
+
+- `spread(data, key, value)`
+
+Now, consider the following (minimal) dataset that has 3 subjects and measures from 3 time points: 
+
+```{r, echo=F}
+dat <- data.frame(Subject = c(rep("A", 3), rep("B", 3), rep("C", 3)),
+                  Timepoint = rep(c("T1", "T2", "T3"), 3),
+                  Measure = c(10, 12, NA, 9, 10, 9, 6, NA, NA))
+dat
+```
+Unless reading line by line, it's not immediate to tell whether the measure at a certain timepoint is missing or not. It gets even more cumbersome when the list is long. What if say we transform the table to let the `Timepoint` becomes separate columns, and the values within `Measure` are stored within those columns instead? This is where `spread()` can be applied:
+
+```{r}
+dat %>% spread(key = Timepoint, value = Measure)
+```
+It gets easier to read along each row to grasp the idea of data availability, plus the dataset [becomes much more tidy](https://vita.had.co.nz/papers/tidy-data.pdf).

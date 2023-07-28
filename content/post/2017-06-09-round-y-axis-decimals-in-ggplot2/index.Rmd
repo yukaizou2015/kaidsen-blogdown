@@ -1,0 +1,18 @@
+---
+title: Round y-axis decimals in ggplot2
+author: Yukai Zou
+date: '2017-06-09'
+slug: round-y-axis-decimals-in-ggplot2
+categories:
+  - R
+tags:
+  - ggplot2
+---
+
+To do so, it is first assumed that the values along y-axis are _continuous_. Use the `scale_y_continuous()` function in ggplot expression.
+
+A working example might look like:
+
+- `scale_y_continuous(labels=function(x) sprintf("%.2f", x))`
+
+where `2f` dictates the number of decimals (two, in this case).

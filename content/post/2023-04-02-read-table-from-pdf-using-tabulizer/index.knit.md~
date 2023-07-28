@@ -1,0 +1,26 @@
+---
+title: Read table from PDF using {tabulizer}
+author: Yukai Zou
+date: '2023-04-02'
+slug: read-table-from-pdf-using-tabulizer
+categories:
+  - R
+tags:
+  - tabulizer
+---
+
+# Installlation
+
+For MacOS, `{tabulizer}` can be installed [here]https://wolfpaulus.com/installing-java-on-macos/).
+
+Run this command:
+
+```
+brew install --cask temurin
+```
+
+## Cheecking Java version
+
+
+
+

@@ -1,0 +1,47 @@
+---
+title: Collapse multiple elements in a vector using paste()
+author: Yukai Zou
+date: '2016-04-14'
+slug: collapse-multiple-elements-in-a-vector-using-paste
+categories:
+  - R
+tags:
+  - base
+---
+
+To do so, specify the `collapse` attribute in `paste()` function:
+
+- `paste(..., collapse = "")`
+
+Collapsing elements can be quite useful, not only for text processing and cleaning purposes, but also filtering a dataset to narrow it down to observations that are of interest. Of course, there are a ton of tools out there to achieve this (e.g. `dplyr::filter`) but to me it's more natural sometimes to just _write out_ what I want to look at in a string vector first. I'll explain with an example.
+
+Consider the classic `mtcars` dataset:
+
+```{r, echo=F}
+head(mtcars, n = 10)
+```
+There are many models here, and in fact I only need to look at `Mazda RX4` and `Valiant`. 
+
+```{r}
+# Code "Mazda RX4" and "Valiant" in a string vector
+string_model <- c("^Mazda RX4$", "Valiant")
+
+# Collapse the two elements into one
+string_model_collapse <- paste(string_model, collapse = "|")
+string_model_collapse
+```
+
+Note that `^` and `$` were used to define boundary at the start and the end, so that only "Mazda RX4" will be grabbed and not "Mazda RX4 Wag". See [this blog](/2017/06/17/notes-on-string-editing/index.html#add-boundary) for details. 
+
+Now I have a single-element string vector, Next is to plug the new vector into the `grep()` function:
+
+```{r}
+id_model_of_interest <- grep(string_model_collapse, row.names(mtcars))
+id_model_of_interest
+```
+Note that the model names are not stored in any column, which needs to be retrived using `row.names()` function.
+
+```{r}
+mtcars[id_model_of_interest,]
+```
+

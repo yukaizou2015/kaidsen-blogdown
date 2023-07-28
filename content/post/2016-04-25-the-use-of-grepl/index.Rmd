@@ -1,0 +1,36 @@
+---
+title: The use of grepl()
+author: Yukai Zou
+date: '2016-04-25'
+slug: the-use-of-grepl
+categories:
+  - R
+tags:
+  - base
+---
+
+```{r setup, include=F}
+library(dplyr)
+```
+
+Different from `grep()` which outputs the _indices_ of the matched pattern, `grepl()` returns logical `TRUE/FALSE` values.
+
+We look at the `cyl` variable in mtcars sets as example:
+
+```{r}
+mtcars$cyl
+```
+
+To find out what entries are 6-cylinder engines, `grep()` will return the indices of the vector (and omit the rest):
+
+```{r}
+grep(6, mtcars$cyl)
+```
+
+whereas `grepl()` will return logical values for the entire vector.
+
+```{r}
+grepl(6, mtcars$cyl)
+```
+
+The outputs vary in terms of the datatypes and lengths, which can be useful to serve difference processing scenarios.

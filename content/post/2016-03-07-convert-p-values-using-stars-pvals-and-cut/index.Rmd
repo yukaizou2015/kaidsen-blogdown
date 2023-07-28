@@ -1,0 +1,70 @@
+---
+title: Convert p-values using stars.pvals() and cut()
+author: Yukai Zou
+date: '2016-03-25'
+slug: convert-p-values-using-stars-pvals-and-cut
+categories:
+  - R
+tags:
+  - gtools
+  - base
+---
+
+```{r setup, include=FALSE}
+library(gtools)
+```
+
+Consider the scenario where we run some statistical analyses using R. We get a bunch of p-values, and we need to highlight those that are significant, so they don't all look the same. There are two functions that could help automate this tedious task.
+
+# stars.pval()
+
+`stars.pval()` from `{gtools}` package can convert p-values to stars.
+
+Let's simulate some p-values:
+
+```{r}
+x <- seq(from = 0.001, to = 0.1, by = 0.005)
+x
+```
+
+and apply `stars.pval()`:
+
+```{r}
+stars.pval(x)
+```
+
+The output also returns the legends, which is a nice feature that explains what p-value ranges are mapped to what symbols.
+
+# cut()
+
+The `cut()` function can divide numbers into several sections, which could act as an extension to `star.pvals()` who just converts p-values to stars. 
+
+- By specifying the `break` attribute, the numeric vector can be divided either evenly or according to what's defined in the vector.
+
+Working example:
+
+Consider the same simulated vector above:
+
+```{r, echo=FALSE}
+x
+```
+
+To break this vector evenly into 10 subsets (bins):
+
+```{r}
+cut(x, breaks = 10)
+```
+Note that the output is a _factor_ datatype that comes with 10 levels.
+
+To cut the vectors according to p-value ranges:
+
+```{r}
+cut(x, breaks = c(0, 0.001, 0.01, 0.05, 1))
+```
+Putting all the outputs to a data frame:
+
+```{r}
+data.frame(pval = x,
+           cut.pval = cut(x, breaks = c(0, 0.001, 0.01, 0.05, 1)),
+           stars.pval = stars.pval(x))
+```

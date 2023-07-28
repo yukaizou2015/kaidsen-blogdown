@@ -1,0 +1,40 @@
+---
+title: Examine vectors using %in% operator
+author: Yukai Zou
+date: '2016-04-05'
+slug: examine-vectors-using-in-operator
+categories:
+  - R
+tags:
+  - base
+---
+
+The `%in%` operator allows comparing two vectors by identifying whether the element of one vector exists in the other.
+
+The rule here is that the vector _to be examined_ will come first, followed by `%in%` and then the target vector _to be compared with_.
+
+Working example:
+
+```{r}
+vector1 <- c("Individual 1", "Individual 2", "Individual 3")
+vector2 <- c("Individual 1", "Individual 2")
+
+# Examine whether elements of vector1 exist in vector 2
+vector1 %in% vector2
+```
+
+The outputs are logical values with respect to each element in `vector1`. Such output can be useful in vector subsetting:
+
+```{r}
+# Get the elements in vector 1 that exist in vector 2
+vector1[ vector1 %in% vector2 ]
+```
+
+
+To find out the _opposite_ (i.e. which element is absent), wrap the whole expression with an exclamation and a set of parentheses:
+
+<center><code>!( expression )<code></center>
+
+```{r}
+!(vector1 %in% vector2)
+```

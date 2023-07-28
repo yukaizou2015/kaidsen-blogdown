@@ -1,0 +1,19 @@
+---
+title: Convert table to matrix
+author: Yukai Zou
+date: '2018-05-24'
+slug: convert-table-to-matrix
+categories:
+  - R
+tags:
+  - R
+---
+
+To do so, use the `unclass()` function.
+
+```{r}
+tab <- with(airquality, table(OzHi = Ozone > 80, Month, useNA = "ifany"))
+class(tab)
+unclass(tab)
+```
+

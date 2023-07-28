@@ -1,0 +1,17 @@
+---
+title: Clear loaded variables in RStudio environments
+author: Yukai Zou
+date: '2018-05-23'
+slug: clear-loaded-variables-in-rstudio-environments
+categories:
+  - R
+tags:
+  - R
+---
+
+To do so, run the following in console:
+
+```{r}
+rm(list=ls())
+```
+
