@@ -1,0 +1,24 @@
+---
+title: Practicing GitHub push & pull request
+author: R package build
+date: '2023-04-28'
+slug: practicing-github-push-pull-request
+categories:
+  - Git
+tags:
+  - GitHub
+---
+
+# Learning goals
+
+**1. Create a new github repository.** I need to create without `README`, in order to demo how to use a few git commands such as `git init`, `git add`, and `git commit`.
+**2. Clone the repository.** I need to do a better job at explaining the concept of clone/fork.
+**3. Make some update within the cloned repository.** I can demo branching here.
+**4. Push and make a pull request.** I need to explain the concept of push/commit.
+**(Advanced topic) 5. Both users make changes at the same line, and making a pull request.** I spent a lot of time explaining how to resolve conflict, how to recognize which branch belongs to which user. An example that involve more than one branch may help this.
+
+# Thoughts afterwards
+
+1. How to explain the concept of Clone/fork (imagine a fork), Push/commit
+2. Good at logical thinking and visuals, but not so good at understanding human-made settings. Need to explain the reasoning behind why things are the way they look like. An example would be to get used to use the mouse when operating a computer, and for this Microsoft has developed several games (e.g. Minesweeper, FreeCell, and Solitaire).
+3. For people without programming experience, might be a bit hard to understand at the very beginning. Basics about command line interface would be useful before delving to Git.
