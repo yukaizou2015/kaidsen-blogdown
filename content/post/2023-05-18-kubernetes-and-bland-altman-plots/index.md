@@ -1,6 +1,6 @@
 ---
 title: Kubernetes and Bland-Altman plots
-author: R package build
+author: Yukai Zou
 date: '2023-05-18'
 slug: kubernetes-and-bland-altman-plots
 categories:

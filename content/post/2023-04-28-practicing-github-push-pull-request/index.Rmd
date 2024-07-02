@@ -1,6 +1,6 @@
 ---
 title: Practicing GitHub push & pull request
-author: R package build
+author: Yukai Zou
 date: '2023-04-28'
 slug: practicing-github-push-pull-request
 categories:
